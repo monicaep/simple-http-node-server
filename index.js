@@ -1,8 +1,12 @@
 const http = require('http'); //import HTTP module
 const port = 3000;
+const fs = require('fs');
 
 const requestHandler = (request, response) => {
-  response.end(`Handling a request on port ${port}`)
+  fs.writeFile('hello-word.txt', 'Hello to this great world', 'utf8', (err) => {
+    if (err) throw err;
+    response.end(`Handling a request on port ${port}`)
+  });
 };
 
 const server = http.createServer(requestHandler);
